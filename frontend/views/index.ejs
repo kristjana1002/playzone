@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Play Zone</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+  <div class="logo">🎮 Play Zone</div>
+  <nav>
+    <a href="/">Home</a>
+
+    <% if (user) { %>
+      <span style="margin-right: 15px; color: white;">Welcome, <%= user.username %></span>
+      <a href="/logout">Logout</a>
+    <% } else { %>
+      <a href="/login">Login</a>
+    <% } %>
+  </nav>
+</header>
+
+  <section class="hero">
+    <h1>Welcome to Play Zone</h1>
+    <p>
+      Play Zone is a fun browser gaming platform where you can create an account,
+      log in, and enjoy quick games directly in your browser without downloading anything.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="/login" class="btn">Start Playing</a>
+    </div>
+  </section>
+
+  <section class="games-section">
+    <h2>Available Games</h2>
+
+    <div class="game-grid">
+
+      <div class="game-card">
+        <h3>Tic Tac Toe</h3>
+        <p>Play against a friend and try to get three in a row.</p>
+        <a href="/tictactoe" class="card-btn">Play</a>
+      </div>
+
+      <div class="game-card">
+        <h3>Quiz Game</h3>
+        <p>Answer questions and test your knowledge.</p>
+        <a href="/quiz" class="card-btn">Play</a>
+      </div>
+
+      <div class="game-card">
+        <h3>Guess the Number</h3>
+        <p>Try to guess the number with helpful hints.</p>
+        <a href="/guess" class="card-btn">Play</a>
+      </div>
+
+      <div class="game-card">
+        <h3>Reaction Speed</h3>
+        <p>Test how fast your reflexes are.</p>
+        <a href="/reaction" class="card-btn">Play</a>
+      </div>
+
+      <div class="game-card">
+        <h3>Memory Match</h3>
+        <p>Find all matching pairs with the fewest moves.</p>
+        <a href="/memory" class="card-btn">Play</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="text-align:center; padding:20px; color:#94a3b8;">
+    <p>© 2026 Play Zone. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
