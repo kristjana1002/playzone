@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Game | Play Zone</title>
+  <link rel="stylesheet" href="/css/quiz.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/quiz">Quiz Game</a>
+      <% if (user) { %>
+        <span class="welcome-text">Welcome, <%= user.username %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="quiz-container">
+    <div class="quiz-card">
+      <h1>Quiz Game</h1>
+
+      <div class="quiz-info">
+        <p>Question: <span id="questionNumber">1</span></p>
+        <p>Score: <span id="score">0</span></p>
+      </div>
+
+      <h2 id="question">Question goes here</h2>
+
+      <div id="answerButtons" class="answer-buttons"></div>
+
+      <p id="resultMessage" class="result-message"></p>
+
+      <div class="quiz-actions">
+        <button id="nextBtn" class="next-btn">Next Question</button>
+        <button id="restartBtn" class="restart-btn">Restart Quiz</button>
+      </div>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </main>
+
+  <script src="/js/quiz.js"></script>
+</body>
+</html>

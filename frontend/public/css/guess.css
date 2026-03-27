@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: white;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background: rgba(15, 23, 42, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+nav a:hover {
+  color: #38bdf8;
+}
+
+.welcome-text {
+  color: #cbd5e1;
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.game-card h1 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.description {
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.stats {
+  margin-bottom: 18px;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+
+.stats span {
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  outline: none;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  flex: 1;
+  min-width: 140px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#guessBtn {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+#guessBtn:hover {
+  background: #7dd3fc;
+}
+
+.reset-btn {
+  background: #334155;
+  color: white;
+}
+
+.reset-btn:hover {
+  background: #475569;
+}
+
+.message {
+  margin-top: 22px;
+  min-height: 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.message.success {
+  color: #4ade80;
+}
+
+.message.error {
+  color: #f87171;
+}
+
+.message.info {
+  color: #facc15;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 24px;
+  color: #38bdf8;
+}
+
+.back-btn:hover {
+  color: #7dd3fc;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 20px;
+  }
+
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .game-card {
+    padding: 30px 20px;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}

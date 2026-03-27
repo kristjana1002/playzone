@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reaction Speed | Play Zone</title>
+  <link rel="stylesheet" href="/css/reaction.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/reaction">Reaction Speed</a>
+      <% if (user) { %>
+        <span class="welcome-text">Welcome, <%= user.username %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="reaction-container">
+    <div class="reaction-card">
+      <h1>Reaction Speed Test</h1>
+      <p class="description">
+        Press start, wait for the color to change, then click as fast as you can.
+      </p>
+
+      <div class="stats">
+        <p>Best Time: <span id="bestTime">--</span></p>
+      </div>
+
+      <div id="reactionBox" class="reaction-box waiting">
+        Click Start to Begin
+      </div>
+
+      <p id="message" class="message"></p>
+
+      <div class="button-group">
+        <button id="startBtn">Start Game</button>
+        <button id="resetBtn" class="reset-btn">Reset</button>
+      </div>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </main>
+
+  <script src="/js/reaction.js"></script>
+</body>
+</html>

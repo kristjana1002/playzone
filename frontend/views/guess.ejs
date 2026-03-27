@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Number | Play Zone</title>
+  <link rel="stylesheet" href="/css/guess.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/guess">Guess Game</a>
+      <% if (user) { %>
+        <span class="welcome-text">Welcome, <%= user.username %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="game-container">
+    <div class="game-card">
+      <h1>Guess the Number</h1>
+      <p class="description">
+        I am thinking of a number between <strong>1</strong> and <strong>100</strong>.
+        Try to guess it in as few attempts as possible.
+      </p>
+
+      <div class="stats">
+        <p>Attempts: <span id="attempts">0</span></p>
+      </div>
+
+      <input
+        type="number"
+        id="guessInput"
+        placeholder="Enter your guess"
+        min="1"
+        max="100"
+      />
+
+      <div class="button-group">
+        <button id="guessBtn">Submit Guess</button>
+        <button id="resetBtn" class="reset-btn">Reset Game</button>
+      </div>
+
+      <p id="message" class="message"></p>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </main>
+
+  <script src="/js/guess.js"></script>
+</body>
+</html>
