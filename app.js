@@ -69,6 +69,18 @@ app.get("/memory", (req, res) => {
   res.render("memory");
 });
 
+app.get("/mathquiz", (req, res) => {
+  res.render("mathquiz");
+});
+
+app.get("/timerchallenge", (req, res) => {
+  res.render("timerchallenge");
+});
+
+app.get("/wordscramble", (req, res) => {
+  res.render("wordscramble");
+});
+
 app.post("/signup", (req, res) => {
   const { username, email, password } = req.body;
 

@@ -1,0 +1,82 @@
+.math-section {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.math-box {
+  width: 100%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 35px 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.math-box h1 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.math-box p {
+  color: #e2e8f0;
+  margin-bottom: 20px;
+}
+
+.math-info {
+  margin-bottom: 20px;
+}
+
+#question {
+  font-size: 1.8rem;
+  color: #f8fafc;
+  margin-bottom: 10px;
+}
+
+#score {
+  font-size: 1.1rem;
+  color: #22c55e;
+}
+
+.math-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.math-form input {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.result-message {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  min-height: 24px;
+  color: #f8fafc;
+}
+
+.math-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .math-box {
+    padding: 25px 20px;
+  }
+
+  #question {
+    font-size: 1.5rem;
+  }
+}

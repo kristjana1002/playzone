@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math Quiz | Play Zone</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/mathquiz.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/guess">Guess</a>
+      <a href="/reaction">Reaction</a>
+      <a href="/memory">Memory</a>
+    </nav>
+  </header>
+
+  <section class="math-section">
+    <div class="math-box">
+      <h1>Math Quiz</h1>
+      <p>Solve the math questions and get the highest score.</p>
+
+      <div class="math-info">
+        <h2 id="question">Question will appear here</h2>
+        <p id="score">Score: 0</p>
+      </div>
+
+      <form id="mathForm" class="math-form">
+        <input type="number" id="answerInput" placeholder="Enter your answer" required />
+        <button type="submit" class="btn">Submit Answer</button>
+      </form>
+
+      <p id="resultMessage" class="result-message"></p>
+
+      <div class="math-buttons">
+        <button id="nextBtn" class="btn btn-secondary">Next Question</button>
+        <button id="resetBtn" class="btn">Reset Game</button>
+        <a href="/" class="btn btn-secondary">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/mathquiz.js"></script>
+</body>
+</html>

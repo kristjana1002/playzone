@@ -1,0 +1,86 @@
+.scramble-section {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.scramble-box {
+  width: 100%;
+  max-width: 560px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 35px 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.scramble-box h1 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.scramble-box p {
+  color: #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.scramble-info {
+  margin-bottom: 20px;
+}
+
+#scrambledWord {
+  font-size: 2rem;
+  letter-spacing: 8px;
+  color: #f8fafc;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+#hintText,
+#scoreText {
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+.scramble-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.scramble-form input {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.scramble-result {
+  min-height: 28px;
+  font-size: 1.05rem;
+  color: #f8fafc;
+  margin-top: 18px;
+}
+
+.scramble-buttons {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .scramble-box {
+    padding: 25px 20px;
+  }
+
+  #scrambledWord {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+  }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tic Tac Toe | Play Zone</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/tictactoe.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/guess">Guess</a>
+      <a href="/reaction">Reaction</a>
+      <a href="/memory">Memory</a>
+    </nav>
+  </header>
+
+  <section class="ttt-section">
+    <div class="ttt-container">
+      <h1>Tic Tac Toe</h1>
+      <p class="ttt-subtext">Take turns and get three in a row to win.</p>
+
+      <div class="game-info">
+        <h2 id="status">Player X's turn</h2>
+      </div>
+
+      <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+
+      <div class="ttt-buttons">
+        <button id="resetBtn" class="btn">Reset Game</button>
+        <a href="/" class="btn btn-secondary">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/tictactoe.js"></script>
+</body>
+</html>

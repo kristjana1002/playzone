@@ -1,0 +1,66 @@
+.timer-section {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.timer-box {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 35px 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.timer-box h1 {
+  font-size: 2rem;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.timer-box p {
+  color: #e2e8f0;
+  margin-bottom: 18px;
+}
+
+.target-time {
+  font-size: 1.1rem;
+  color: #22c55e;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.timer-display {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #f8fafc;
+  margin: 25px 0;
+}
+
+.timer-result {
+  min-height: 28px;
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin-bottom: 20px;
+}
+
+.timer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .timer-box {
+    padding: 25px 20px;
+  }
+
+  .timer-display {
+    font-size: 3rem;
+  }
+}

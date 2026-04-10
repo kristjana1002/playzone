@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Scramble | Play Zone</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/wordscramble.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/mathquiz">Math Quiz</a>
+      <a href="/timerchallenge">Timer Challenge</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/guess">Guess</a>
+    </nav>
+  </header>
+
+  <section class="scramble-section">
+    <div class="scramble-box">
+      <h1>Word Scramble</h1>
+      <p>Unscramble the letters and guess the correct word.</p>
+
+      <div class="scramble-info">
+        <h2 id="scrambledWord">loading...</h2>
+        <p id="hintText">Hint: ---</p>
+        <p id="scoreText">Score: 0</p>
+      </div>
+
+      <form id="scrambleForm" class="scramble-form">
+        <input
+          type="text"
+          id="wordInput"
+          placeholder="Type the correct word"
+          autocomplete="off"
+          required
+        />
+        <button type="submit" class="btn">Check Answer</button>
+      </form>
+
+      <p id="resultMessage" class="scramble-result"></p>
+
+      <div class="scramble-buttons">
+        <button id="hintBtn" class="btn btn-secondary">Show Hint</button>
+        <button id="nextBtn" class="btn">Next Word</button>
+        <button id="resetBtn" class="btn btn-secondary">Reset Game</button>
+        <a href="/" class="btn">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/wordscramble.js"></script>
+</body>
+</html>

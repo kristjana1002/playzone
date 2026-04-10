@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Timer Challenge | Play Zone</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/timerchallenge.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/mathquiz">Math Quiz</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/guess">Guess</a>
+      <a href="/reaction">Reaction</a>
+    </nav>
+  </header>
+
+  <section class="timer-section">
+    <div class="timer-box">
+      <h1>Timer Challenge</h1>
+      <p>Try to stop the timer at exactly <strong>5.00 seconds</strong>.</p>
+
+      <div class="target-time">Target: 5.00s</div>
+      <div id="timerDisplay" class="timer-display">0.00</div>
+      <p id="resultMessage" class="timer-result"></p>
+
+      <div class="timer-buttons">
+        <button id="startBtn" class="btn">Start</button>
+        <button id="stopBtn" class="btn btn-secondary">Stop</button>
+        <button id="resetBtn" class="btn">Reset</button>
+        <a href="/" class="btn btn-secondary">Back Home</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="/js/timerchallenge.js"></script>
+</body>
+</html>
