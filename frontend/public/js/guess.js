@@ -7,6 +7,59 @@ const guessBtn = document.getElementById("guessBtn");
 const resetBtn = document.getElementById("resetBtn");
 const message = document.getElementById("message");
 const attemptsText = document.getElementById("attempts");
+const bestScoreText = document.getElementById("bestScore");
+
+async function loadBestScore() {
+  if (!currentUser) {
+    bestScoreText.textContent = "--";
+    return;
+  }
+
+  try {
+    const response = await fetch("/best-score/guess");
+    const data = await response.json();
+
+    if (data.bestScore !== null && data.bestScore !== undefined) {
+      bestScoreText.textContent = data.bestScore;
+    } else {
+      bestScoreText.textContent = "--";
+    }
+  } catch (error) {
+    console.error("Error loading best score:", error);
+    bestScoreText.textContent = "--";
+  }
+}
+
+async function saveBestScore(finalAttempts) {
+  if (!currentUser) {
+    showMessage(`Correct! You guessed the number in ${finalAttempts} attempts. Log in to save your best score.`, "success");
+    return;
+  }
+
+  try {
+    const response = await fetch("/save-score", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        game: "guess",
+        score: finalAttempts,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.bestScore !== null && data.bestScore !== undefined) {
+      bestScoreText.textContent = data.bestScore;
+    }
+
+    showMessage(`Correct! You guessed the number in ${finalAttempts} attempts. ${data.message}`, "success");
+  } catch (error) {
+    console.error("Error saving best score:", error);
+    showMessage(`Correct! You guessed the number in ${finalAttempts} attempts. Could not save score.`, "success");
+  }
+}
 
 function startGame() {
   randomNumber = Math.floor(Math.random() * 100) + 1;
@@ -21,6 +74,8 @@ function startGame() {
   guessInput.disabled = false;
   guessBtn.disabled = false;
   guessInput.focus();
+
+  loadBestScore();
 }
 
 function showMessage(text, type) {
@@ -47,10 +102,10 @@ function handleGuess() {
   attemptsText.textContent = attempts;
 
   if (userGuess === randomNumber) {
-    showMessage(`Correct! You guessed the number in ${attempts} attempts.`, "success");
     gameFinished = true;
     guessInput.disabled = true;
     guessBtn.disabled = true;
+    saveBestScore(attempts);
     return;
   }
 

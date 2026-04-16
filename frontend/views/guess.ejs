@@ -32,6 +32,7 @@
 
       <div class="stats">
         <p>Attempts: <span id="attempts">0</span></p>
+        <p>Best Attempts: <span id="bestScore">--</span></p>
       </div>
 
       <input
@@ -53,6 +54,9 @@
     </div>
   </main>
 
+  <script>
+    const currentUser = <%- JSON.stringify(user || null) %>;
+  </script>
   <script src="/js/guess.js"></script>
 </body>
 </html>

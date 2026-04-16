@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memory Match | Play Zone</title>
+  <link rel="stylesheet" href="/css/memory.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">🎮 Play Zone</div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/memory">Memory Match</a>
+      <% if (user) { %>
+        <span class="welcome-text">Welcome, <%= user.username %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </nav>
+  </header>
+
+  <main class="memory-container">
+    <div class="memory-card">
+      <h1>Memory Match</h1>
+      <p class="description">
+        Flip the cards and find all matching pairs in the fewest moves.
+      </p>
+
+      <div class="stats">
+        <div class="stat-box">
+          <span>Moves</span>
+          <strong id="moves">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>Matches</span>
+          <strong id="matches">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>Best</span>
+          <strong id="bestScore">--</strong>
+        </div>
+      </div>
+
+      <div id="memoryBoard" class="memory-board"></div>
+
+      <p id="message" class="message"></p>
+
+      <div class="button-group">
+        <button id="restartBtn">Restart Game</button>
+      </div>
+
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    const currentUser = <%- JSON.stringify(user || null) %>;
+  </script>
+  <script src="/js/memory.js"></script>
+</body>
+</html>

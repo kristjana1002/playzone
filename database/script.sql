@@ -4,3 +4,21 @@ CREATE TABLE IF NOT EXISTS users (
   email TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL
 );
+
+
+
+CREATE TABLE IF NOT EXISTS best_scores (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL,
+  game TEXT NOT NULL,
+  score INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(user_id, game),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+/*
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS best_scores;
+DROP TABLE IF EXISTS scores;

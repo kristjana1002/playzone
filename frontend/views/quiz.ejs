@@ -29,6 +29,7 @@
       <div class="quiz-info">
         <p>Question: <span id="questionNumber">1</span></p>
         <p>Score: <span id="score">0</span></p>
+        <p>Best: <span id="bestScore">--</span></p>
       </div>
 
       <h2 id="question">Question goes here</h2>
@@ -46,6 +47,9 @@
     </div>
   </main>
 
+  <script>
+    const currentUser = <%- JSON.stringify(user || null) %>;
+  </script>
   <script src="/js/quiz.js"></script>
 </body>
 </html>

@@ -8,22 +8,37 @@ const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 const resetBtn = document.getElementById("resetBtn");
 
-const words = [
-  { word: "apple", hint: "A common fruit" },
-  { word: "tiger", hint: "A big wild cat" },
-  { word: "school", hint: "A place where students learn" },
-  { word: "banana", hint: "A yellow fruit" },
-  { word: "planet", hint: "Earth is one of these" },
-  { word: "pencil", hint: "Used for writing" },
-  { word: "window", hint: "You look through it" },
-  { word: "summer", hint: "A warm season" },
-  { word: "garden", hint: "A place with flowers or plants" },
-  { word: "bottle", hint: "Used to hold water or drinks" }
-];
-
+let words = [];
 let currentWord = "";
 let currentHint = "";
 let score = 0;
+
+async function loadWords() {
+  try {
+    const response = await fetch("/api/words");
+    const data = await response.json();
+    words = data;
+    loadNewWord(); 
+  } catch (error) {
+    console.error("Failed to load words:", error);
+
+
+    words = [
+      { word: "planet", hint: "orbits a star" },
+      { word: "oxygen", hint: "we breathe this" },
+      { word: "engine", hint: "powers a car" },
+      { word: "island", hint: "land surrounded by water" },
+      { word: "artist", hint: "creates paintings" },
+      { word: "library", hint: "place full of books" },
+      { word: "volcano", hint: "erupts with lava" },
+      { word: "keyboard", hint: "used to type on a computer" },
+      { word: "bicycle", hint: "two-wheeled transport" },
+      { word: "rainbow", hint: "colorful arc in the sky after rain" }
+    ];
+
+    loadNewWord();
+  }
+}
 
 function shuffleWord(word) {
   let letters = word.split("");
@@ -37,12 +52,14 @@ function shuffleWord(word) {
 }
 
 function loadNewWord() {
+  if (!words.length) return;
+
   resultMessageEl.textContent = "";
   wordInput.value = "";
   hintTextEl.textContent = "Hint: ---";
 
   const randomItem = words[Math.floor(Math.random() * words.length)];
-  currentWord = randomItem.word;
+  currentWord = randomItem.word.toLowerCase();
   currentHint = randomItem.hint;
 
   let scrambled = shuffleWord(currentWord);
@@ -83,4 +100,5 @@ resetBtn.addEventListener("click", function () {
   loadNewWord();
 });
 
-loadNewWord();
+
+loadWords();

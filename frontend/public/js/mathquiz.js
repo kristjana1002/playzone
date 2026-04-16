@@ -1,69 +1,185 @@
-const questionEl = document.getElementById("question");
-const scoreEl = document.getElementById("score");
-const resultMessage = document.getElementById("resultMessage");
-const answerInput = document.getElementById("answerInput");
-const mathForm = document.getElementById("mathForm");
-const nextBtn = document.getElementById("nextBtn");
-const resetBtn = document.getElementById("resetBtn");
+let questions = [];
 
-let num1;
-let num2;
-let operator;
-let correctAnswer;
+async function loadQuestions() {
+  try {
+    const response = await fetch("/api/mathquiz");
+    const data = await response.json();
+    questions = data;
+    startQuiz();
+  } catch (error) {
+    console.error("Failed to load AI math questions:", error);
+    questionElement.textContent = "Could not load math quiz questions.";
+  }
+}
+
+const questionElement = document.getElementById("question");
+const answerButtons = document.getElementById("answerButtons");
+const nextBtn = document.getElementById("nextBtn");
+const restartBtn = document.getElementById("restartBtn");
+const resultMessage = document.getElementById("resultMessage");
+const scoreText = document.getElementById("score");
+const questionNumberText = document.getElementById("questionNumber");
+const bestScoreText = document.getElementById("bestScore");
+
+let currentQuestionIndex = 0;
 let score = 0;
 let answered = false;
 
-function generateQuestion() {
-  answered = false;
-  resultMessage.textContent = "";
-  answerInput.value = "";
-
-  const operators = ["+", "-", "*"];
-  operator = operators[Math.floor(Math.random() * operators.length)];
-
-  num1 = Math.floor(Math.random() * 20) + 1;
-  num2 = Math.floor(Math.random() * 20) + 1;
-
-  if (operator === "-") {
-    if (num2 > num1) {
-      [num1, num2] = [num2, num1];
-    }
-    correctAnswer = num1 - num2;
-  } else if (operator === "+") {
-    correctAnswer = num1 + num2;
-  } else if (operator === "*") {
-    correctAnswer = num1 * num2;
+async function loadBestScore() {
+  if (!currentUser) {
+    bestScoreText.textContent = "--";
+    return;
   }
 
-  questionEl.textContent = `${num1} ${operator} ${num2} = ?`;
+  try {
+    const response = await fetch("/best-score/mathquiz");
+    const data = await response.json();
+
+    if (data.bestScore !== null && data.bestScore !== undefined) {
+      bestScoreText.textContent = data.bestScore;
+    } else {
+      bestScoreText.textContent = "--";
+    }
+  } catch (error) {
+    console.error("Error loading best score:", error);
+    bestScoreText.textContent = "--";
+  }
 }
 
-mathForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  if (answered) return;
-
-  const userAnswer = Number(answerInput.value);
-
-  if (userAnswer === correctAnswer) {
-    score++;
-    scoreEl.textContent = `Score: ${score}`;
-    resultMessage.textContent = "Correct!";
-  } else {
-    resultMessage.textContent = `Wrong! The correct answer was ${correctAnswer}`;
+async function saveBestScore(finalScore) {
+  if (!currentUser) {
+    resultMessage.textContent += " Log in to save your best score.";
+    return;
   }
 
-  answered = true;
-});
+  try {
+    const response = await fetch("/save-score", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        game: "mathquiz",
+        score: finalScore,
+      }),
+    });
 
-nextBtn.addEventListener("click", function () {
-  generateQuestion();
-});
+    const data = await response.json();
 
-resetBtn.addEventListener("click", function () {
+    if (data.bestScore !== null && data.bestScore !== undefined) {
+      bestScoreText.textContent = data.bestScore;
+    }
+
+    if (data.message) {
+      resultMessage.textContent += ` ${data.message}`;
+    }
+  } catch (error) {
+    console.error("Error saving best score:", error);
+    resultMessage.textContent += " Could not save score.";
+  }
+}
+
+function startQuiz() {
+  if (!questions.length) {
+    questionElement.textContent = "No questions available.";
+    return;
+  }
+
+  currentQuestionIndex = 0;
   score = 0;
-  scoreEl.textContent = "Score: 0";
-  generateQuestion();
-});
+  answered = false;
 
-generateQuestion();
+  scoreText.textContent = score;
+  nextBtn.style.display = "none";
+  restartBtn.style.display = "none";
+  resultMessage.textContent = "";
+
+  showQuestion();
+}
+
+function showQuestion() {
+  resetState();
+
+  const currentQuestion = questions[currentQuestionIndex];
+  questionNumberText.textContent = currentQuestionIndex + 1;
+  questionElement.textContent = currentQuestion.question;
+
+  currentQuestion.answers.forEach((answer) => {
+    const button = document.createElement("button");
+    button.textContent = answer;
+    button.classList.add("answer-btn");
+    button.dataset.correct = answer === currentQuestion.correctAnswer;
+    button.addEventListener("click", selectAnswer);
+    answerButtons.appendChild(button);
+  });
+}
+
+function resetState() {
+  answered = false;
+  nextBtn.style.display = "none";
+  resultMessage.textContent = "";
+
+  while (answerButtons.firstChild) {
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
+}
+
+function selectAnswer(event) {
+  if (answered) return;
+
+  answered = true;
+  const selectedButton = event.target;
+  const isCorrect = selectedButton.dataset.correct === "true";
+
+  if (isCorrect) {
+    score++;
+    scoreText.textContent = score;
+    resultMessage.textContent = "Correct!";
+  } else {
+    resultMessage.textContent = "Wrong answer!";
+  }
+
+  Array.from(answerButtons.children).forEach((button) => {
+    if (button.dataset.correct === "true") {
+      button.classList.add("correct");
+    } else if (button === selectedButton) {
+      button.classList.add("wrong");
+    }
+
+    button.disabled = true;
+  });
+
+  nextBtn.style.display = "inline-block";
+}
+
+function showFinalScreen() {
+  resetState();
+  questionNumberText.textContent = questions.length;
+  questionElement.textContent = `Math quiz finished! Your final score is ${score} out of ${questions.length}.`;
+
+  resultMessage.textContent =
+    score === questions.length
+      ? "Perfect score!"
+      : score >= 3
+      ? "Nice job!"
+      : "Good try!";
+
+  saveBestScore(score);
+  restartBtn.style.display = "inline-block";
+}
+
+function handleNextQuestion() {
+  currentQuestionIndex++;
+
+  if (currentQuestionIndex < questions.length) {
+    showQuestion();
+  } else {
+    showFinalScreen();
+  }
+}
+
+nextBtn.addEventListener("click", handleNextQuestion);
+restartBtn.addEventListener("click", loadQuestions);
+
+loadBestScore();
+loadQuestions();

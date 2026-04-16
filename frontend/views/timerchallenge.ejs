@@ -13,31 +13,44 @@
     <div class="logo">🎮 Play Zone</div>
     <nav>
       <a href="/">Home</a>
-      <a href="/mathquiz">Math Quiz</a>
-      <a href="/quiz">Quiz</a>
-      <a href="/guess">Guess</a>
-      <a href="/reaction">Reaction</a>
+      <a href="/timerchallenge">Timer Challenge</a>
+      <% if (user) { %>
+        <span class="welcome-text">Welcome, <%= user.username %></span>
+        <a href="/logout">Logout</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
     </nav>
   </header>
 
-  <section class="timer-section">
+  <main class="timer-section">
     <div class="timer-box">
       <h1>Timer Challenge</h1>
-      <p>Try to stop the timer at exactly <strong>5.00 seconds</strong>.</p>
+      <p>Try to stop the timer as close as possible to 5.00 seconds.</p>
 
-      <div class="target-time">Target: 5.00s</div>
+      <div class="target-time">
+        Target: 5.00 seconds
+      </div>
+
+      <p>Best Difference: <span id="bestScore">--</span></p>
+
       <div id="timerDisplay" class="timer-display">0.00</div>
+
       <p id="resultMessage" class="timer-result"></p>
 
       <div class="timer-buttons">
         <button id="startBtn" class="btn">Start</button>
-        <button id="stopBtn" class="btn btn-secondary">Stop</button>
-        <button id="resetBtn" class="btn">Reset</button>
-        <a href="/" class="btn btn-secondary">Back Home</a>
+        <button id="stopBtn" class="btn">Stop</button>
+        <button id="resetBtn" class="btn btn-secondary">Reset</button>
       </div>
-    </div>
-  </section>
 
+      <a href="/" class="back-btn">← Back to Home</a>
+    </div>
+  </main>
+
+  <script>
+    const currentUser = <%- JSON.stringify(user || null) %>;
+  </script>
   <script src="/js/timerchallenge.js"></script>
 </body>
 </html>
