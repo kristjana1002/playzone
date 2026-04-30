@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <header class="navbar">
+<header class="navbar">
   <div class="logo">🎮 Play Zone</div>
   <nav>
     <a href="/">Home</a>
@@ -22,7 +22,21 @@
   </nav>
 </header>
 
-  <section class="hero">
+<section class="hero">
+
+  <% if (user) { %>
+
+    <h1>Welcome back, <%= user.username %></h1>
+    <p>
+      Ready to play? Pick a game below and try to beat your best score.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#games" class="btn">Browse Games</a>
+    </div>
+
+  <% } else { %>
+
     <h1>Welcome to Play Zone</h1>
     <p>
       Play Zone is a fun browser gaming platform where you can create an account,
@@ -32,67 +46,78 @@
     <div class="hero-buttons">
       <a href="/login" class="btn">Start Playing</a>
     </div>
-  </section>
 
-  <section class="games-section">
-    <h2>Available Games</h2>
+  <% } %>
 
-    <div class="game-grid">
+</section>
 
-      <div class="game-card">
-        <h3>Tic Tac Toe</h3>
-        <p>Play against a friend and try to get three in a row.</p>
-        <a href="/tictactoe" class="card-btn">Play</a>
-      </div>
+<section class="games-section" id="games">
+  <h2>Available Games</h2>
 
-      <div class="game-card">
-        <h3>Quiz Game</h3>
-        <p>Answer questions and test your knowledge.</p>
-        <a href="/quiz" class="card-btn">Play</a>
-      </div>
+  <div class="game-grid">
 
-      <div class="game-card">
-        <h3>Guess the Number</h3>
-        <p>Try to guess the number with helpful hints.</p>
-        <a href="/guess" class="card-btn">Play</a>
-      </div>
-
-      <div class="game-card">
-        <h3>Reaction Speed</h3>
-        <p>Test how fast your reflexes are.</p>
-        <a href="/reaction" class="card-btn">Play</a>
-      </div>
-
-      <div class="game-card">
-        <h3>Memory Match</h3>
-        <p>Find all matching pairs with the fewest moves.</p>
-        <a href="/memory" class="card-btn">Play</a>
-      </div>
-
-      <div class="game-card">
-       <h3>Math Quiz</h3>
-       <p>Solve random math questions and test your skills.</p>
-       <a href="/mathquiz" class="card-btn">Play</a>
-      </div>
-
-      <div class="game-card">
-       <h3>Timer Challenge</h3>
-       <p>Try to stop the timer at exactly the right moment.</p>
-       <a href="/timerchallenge" class="card-btn">Play</a>
-      </div>
-
-      <div class="game-card">
-       <h3>Word Scramble</h3>
-       <p>Unscramble letters and guess the correct word.</p>
-       <a href="/wordscramble" class="card-btn">Play</a>
-     </div>
-
+    <div class="game-card">
+      <img src="/images/tictactoe.png" class="game-img">
+      <h3>Tic Tac Toe</h3>
+      <p>Classic 2-player game</p>
+      <a href="/tictactoe" class="card-btn">Play</a>
     </div>
-  </section>
 
-  <footer style="text-align:center; padding:20px; color:#94a3b8;">
-    <p>© 2026 Play Zone. All rights reserved.</p>
-  </footer>
+    <div class="game-card">
+      <img src="/images/quiz.jpg" class="game-img">
+      <h3>Quiz</h3>
+      <p>Test your knowledge</p>
+      <a href="/quiz" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/reaction.png" class="game-img">
+      <h3>Reaction</h3>
+      <p>Test your speed</p>
+      <a href="/reaction" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/memory.png" class="game-img">
+      <h3>Memory</h3>
+      <p>Match the cards</p>
+      <a href="/memory" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/math.jpg" class="game-img">
+      <h3>Math Quiz</h3>
+      <p>Solve problems fast</p>
+      <a href="/mathquiz" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/timer.jpg" class="game-img">
+      <h3>Timer Challenge</h3>
+      <p>Beat the clock</p>
+      <a href="/timerchallenge" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/wordscramble.jpg" class="game-img">
+      <h3>Word Scramble</h3>
+      <p>Unscramble words</p>
+      <a href="/wordscramble" class="card-btn">Play</a>
+    </div>
+
+    <div class="game-card">
+      <img src="/images/guess.jpg" class="game-img">
+      <h3>Guess Number</h3>
+      <p>Find the number</p>
+      <a href="/guess" class="card-btn">Play</a>
+    </div>
+
+  </div>
+</section>
+
+<footer style="text-align:center; padding:20px; color:#94a3b8;">
+  <p>© 2026 Play Zone. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
